@@ -98,9 +98,9 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return null;
 	}
 	
-	public List<T> recuperarTodos(String columnOrder) {
+	public List<?> recuperarTodos(String columnOrder) {
 		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " + getPersistentClass().getSimpleName()+" e order by e."+columnOrder);
-		List<T> resultado = (List<T>)consulta.getResultList();
+		List<?> resultado = (List<?>)consulta.getResultList();
 		return resultado;
 		}
 
