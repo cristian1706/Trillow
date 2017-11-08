@@ -23,7 +23,7 @@ public class Usuario {
 		
 	}
 	
-	public Usuario (String nombre, String apellido, String username, String email, String clave, ArrayList<Proyecto> proyectos) {
+	public Usuario (String nombre, String apellido, String username, String email, String clave) {
 		this.setNombre(nombre);
 		this.setApellido(apellido);
 		this.setUsername(username);
