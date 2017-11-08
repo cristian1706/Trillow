@@ -1,8 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import javax.persistence.*;
+
+@Entity
+@Table(name="ListaDeTareas")
 
 public class ListaDeTareas {
+	
+	@Id @GeneratedValue
+	@Column(name="id_listaDeTareas")
+	
 	private Integer id;
 	private String titulo;
 	private ArrayList<Tarea> tareas;

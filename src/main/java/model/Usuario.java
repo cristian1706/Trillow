@@ -1,8 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import javax.persistence.*;
+
+@Entity
+@Table(name="Usuario")
 
 public class Usuario {
+	
+	@Id @GeneratedValue
+	@Column(name="id_usuario")
+
 	private Integer id;
 	private String nombre;
 	private String apellido;
@@ -11,6 +19,9 @@ public class Usuario {
 	private String clave;
 	private ArrayList<Proyecto> proyectos;
 	
+	public Usuario() {
+		
+	}
 	
 	public Usuario (String nombre, String apellido, String username, String email, String clave, ArrayList<Proyecto> proyectos) {
 		this.setNombre(nombre);

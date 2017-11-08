@@ -2,10 +2,17 @@ package model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.persistence.*;
 
 import model.Usuario;
 
+@Entity
+@Table(name="Tarea")
+
 public class Tarea {
+	@Id @GeneratedValue
+	@Column(name="tarea_id")
+
 	private Integer id;
 	private String titulo;
 	private String descripcion;

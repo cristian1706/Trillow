@@ -1,6 +1,15 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="CheckItem")
+
 public class CheckItem {
+	
+	@Id @GeneratedValue
+	@Column(name="id_cheackItem")
+	
 	private Integer id;
 	private String texto;
 	private Boolean estado;

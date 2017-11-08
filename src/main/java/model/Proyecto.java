@@ -2,8 +2,17 @@ package model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.persistence.*;
+
+@Entity
+@Table(name="Proyecto")
 
 public class Proyecto {
+	
+	@Id @GeneratedValue
+	 @Column(name="id_proyecto")
+
+	
 	private Integer id;
 	private String titulo;
 	private String descripcion;
