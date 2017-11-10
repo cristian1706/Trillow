@@ -7,7 +7,7 @@ import javax.persistence.*;
 import model.Usuario;
 
 @Entity
-@Table(name="Tarea")
+@Table(name="tarea")
 
 public class Tarea {
 	@Id @GeneratedValue
@@ -18,20 +18,20 @@ public class Tarea {
 	private String descripcion;
 	private Date fechaDeAsignacion;
 	private Date fechaDeVencimiento;
-	private ArrayList<Comentario> comentarios;
-	private ArrayList<CheckItem> checklist;
-	private ArrayList<Usuario> participantes;
-	private ListaDeTareas listaDeTareas;
+	private ArrayList<Integer> comentarios;
+	private ArrayList<Integer> checklist;
+	private ArrayList<Integer> participantes;
+	private Integer idListaDeTareas;
 	
-	public Tarea (String titulo, String descripcion, Date fechaDeAsignacion, Date fechaDeVencimiento, ArrayList<Usuario> participantes, ListaDeTareas listaDeTareas) {
+	public Tarea (String titulo, String descripcion, Date fechaDeAsignacion, Date fechaDeVencimiento, ArrayList<Integer> participantes, Integer idListaDeTareas) {
 		this.setTitulo(titulo);
 		this.setDescripcion(descripcion);
 		this.setFechaDeAsignacion(fechaDeAsignacion);
 		this.setFechaDeVencimiento(fechaDeVencimiento);
 		this.setParticipantes(participantes);
-		this.setListaDeTareas(listaDeTareas);
+		this.setIdListaDeTareas(idListaDeTareas);
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -43,50 +43,67 @@ public class Tarea {
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 	public Date getFechaDeAsignacion() {
 		return fechaDeAsignacion;
 	}
+
 	public void setFechaDeAsignacion(Date fechaDeAsignacion) {
 		this.fechaDeAsignacion = fechaDeAsignacion;
 	}
+
 	public Date getFechaDeVencimiento() {
 		return fechaDeVencimiento;
 	}
-	public void setFechaDeVencimiento(Date fechaDeVencimiento2) {
-		this.fechaDeVencimiento = fechaDeVencimiento2;
+
+	public void setFechaDeVencimiento(Date fechaDeVencimiento) {
+		this.fechaDeVencimiento = fechaDeVencimiento;
 	}
-	public ArrayList<Comentario> getComentarios() {
+	
+	public ArrayList<Integer> getComentarios() {
 		return comentarios;
 	}
-	public void setComentarios(ArrayList<Comentario> comentarios) {
+
+	public void setComentarios(ArrayList<Integer> comentarios) {
 		this.comentarios = comentarios;
 	}
 
-	public ArrayList<CheckItem> getChecklist() {
+	public ArrayList<Integer> getChecklist() {
 		return checklist;
 	}
-	public void setChecklist(ArrayList<CheckItem> checklist) {
+
+	public void setChecklist(ArrayList<Integer> checklist) {
 		this.checklist = checklist;
 	}
-	public ArrayList<Usuario> getParticipantes() {
+
+	public ArrayList<Integer> getParticipantes() {
 		return participantes;
 	}
-	public void setParticipantes(ArrayList<Usuario> participantes) {
+
+	public void setParticipantes(ArrayList<Integer> participantes) {
 		this.participantes = participantes;
 	}
-	public ListaDeTareas getListaDeTareas() {
-		return listaDeTareas;
+
+	public Integer getIdListaDeTareas() {
+		return idListaDeTareas;
 	}
-	public void setListaDeTareas(ListaDeTareas listaDeTareas) {
-		this.listaDeTareas = listaDeTareas;
+
+	public void setIdListaDeTareas(Integer idListaDeTareas) {
+		this.idListaDeTareas = idListaDeTareas;
 	}
+	
+	
+
 }

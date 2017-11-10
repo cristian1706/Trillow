@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Usuario")
+@Table(name="usuario")
 
 public class Usuario {
 	
@@ -17,7 +17,7 @@ public class Usuario {
 	private String username;
 	private String email;
 	private String clave;
-	private ArrayList<Proyecto> proyectos;
+	private ArrayList<Integer> proyectos;
 	
 	public Usuario() {
 		
@@ -67,11 +67,11 @@ public class Usuario {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	public ArrayList<Proyecto> getProyectos() {
+	public ArrayList<Integer> getProyectos() {
 		return proyectos;
 	}
 
-	public void setProyectos(ArrayList<Proyecto> proyectos) {
+	public void setProyectos(ArrayList<Integer> proyectos) {
 		this.proyectos = proyectos;
 	}
 }

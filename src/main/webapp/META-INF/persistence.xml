@@ -8,16 +8,12 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>mipaquete.Mensaje</class>
 		<properties>
-			<property name="hibernate.connection.driver_class" value="
-				com.mysql.jdbc.Driver " />
-			<property name="hibernate.connection.password" value=" admin " />
-			<property name="hibernate.connection.url" value="
-				jdbc:mysql: / localhost:3306 / mibd " />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:mysql:/localhost:3306/trillow" />
 			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.default_schema" value="stock" />
-			<property name="hibernate.dialect"
-				value="
-				org.hibernate.dialect.MySQL5InnoDBDialect " />
+			<property name="hibernate.default_schema" value="trillow" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
 	</persistence-unit>
 </persistence>

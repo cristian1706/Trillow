@@ -3,12 +3,12 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="CheckItem")
+@Table(name="checkItem")
 
 public class CheckItem {
 	
 	@Id @GeneratedValue
-	@Column(name="id_cheackItem")
+	@Column(name="id_checkItem")
 	
 	private Integer id;
 	private String texto;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ListaDeTareas")
+@Table(name="listaDeTareas")
 
 public class ListaDeTareas {
 	

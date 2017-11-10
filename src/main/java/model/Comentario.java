@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Comentario")
+@Table(name="comentario")
 
 public class Comentario {
 	

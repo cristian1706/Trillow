@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Proyecto")
+@Table(name="proyecto")
 
 public class Proyecto {
 	
@@ -18,8 +18,8 @@ public class Proyecto {
 	private String descripcion;
 	private Date fechaDeCreacion;
 	private Date fechaDeFinalizacion;
-	private ArrayList<Usuario> miembros;
-	private ArrayList<ListaDeTareas> listaDeTareas;
+	private ArrayList<Integer> miembros;
+	private ArrayList<Integer> listaDeTareas;
 	
 	public Proyecto (String titulo, Date fechaDeCreacion, Date fechaDeFinalizacion) {
 		this.setTitulo(titulo);
@@ -59,16 +59,21 @@ public class Proyecto {
 	public void setFechaDeFinalizacion(Date fechaDeFinalizacion) {
 		this.fechaDeFinalizacion = fechaDeFinalizacion;
 	}
-	public ArrayList<Usuario> getMiembros() {
+
+	public ArrayList<Integer> getMiembros() {
 		return miembros;
 	}
-	public void setMiembros(ArrayList<Usuario> miembros) {
+
+	public void setMiembros(ArrayList<Integer> miembros) {
 		this.miembros = miembros;
 	}
-	public ArrayList<ListaDeTareas> getListaDeTareas() {
+
+	public ArrayList<Integer> getListaDeTareas() {
 		return listaDeTareas;
 	}
-	public void setListaDeTareas(ArrayList<ListaDeTareas> listaDeTareas) {
+
+	public void setListaDeTareas(ArrayList<Integer> listaDeTareas) {
 		this.listaDeTareas = listaDeTareas;
 	}
+
 }
