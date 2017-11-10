@@ -5,8 +5,8 @@ import model.Tarea;
 
 public class TareaDAOHibernateJPA extends GenericDAOHibernateJPA<Tarea> implements TareaDAO{
 
-	public TareaDAOHibernateJPA(Class<Tarea> class1) {
-		super(class1);
+	public TareaDAOHibernateJPA() {
+		super(Tarea.class);
 		// TODO Auto-generated constructor stub
 	}
 

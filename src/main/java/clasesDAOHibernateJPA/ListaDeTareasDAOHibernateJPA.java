@@ -5,8 +5,8 @@ import model.ListaDeTareas;
 
 public class ListaDeTareasDAOHibernateJPA extends GenericDAOHibernateJPA<ListaDeTareas> implements ListaDeTareasDAO{
 
-	public ListaDeTareasDAOHibernateJPA(Class<ListaDeTareas> class1) {
-		super(class1);
+	public ListaDeTareasDAOHibernateJPA() {
+		super(ListaDeTareas.class);
 		// TODO Auto-generated constructor stub
 	}
 

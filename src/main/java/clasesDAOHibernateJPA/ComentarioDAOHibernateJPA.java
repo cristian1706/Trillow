@@ -6,8 +6,8 @@ import model.Comentario;
 public class ComentarioDAOHibernateJPA extends GenericDAOHibernateJPA<Comentario> implements ComentarioDAO{
 
 
-	public ComentarioDAOHibernateJPA(Class<Comentario> class1) {
-		super(class1);
+	public ComentarioDAOHibernateJPA() {
+		super(Comentario.class);
 		// TODO Auto-generated constructor stub
 	}
 

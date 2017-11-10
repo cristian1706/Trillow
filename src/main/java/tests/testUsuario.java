@@ -1,10 +1,8 @@
 package tests;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
+import clasesDAO.UsuarioDAO;
+import clasesDAOHibernateJPA.DAOFactory;
 import model.Usuario;
 
 
@@ -12,7 +10,12 @@ public class testUsuario {
 	
 	public static void main(String args[]){
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("miUp");
+		DAOFactory fac = new DAOFactory();
+		UsuarioDAO user = fac.getUsuarioDAO();
+		Usuario u = new Usuario("maria","cercato","mcercato","mcercato@hotmail","123456");
+		u = user.persistir(u);
+		
+		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("trillow");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
@@ -22,7 +25,7 @@ public class testUsuario {
 
 		etx.commit();
 		em.close();
-		
+		*/
 	}
 
 }

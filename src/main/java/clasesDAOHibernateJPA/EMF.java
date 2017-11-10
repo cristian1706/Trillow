@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 
 public class EMF {
 	
-	private static final EntityManagerFactory em = Persistence.createEntityManagerFactory("mapeos");
+	private static final EntityManagerFactory em = Persistence.createEntityManagerFactory("trillow");
 			
 	public static EntityManagerFactory getEMF() {
 			return em;
