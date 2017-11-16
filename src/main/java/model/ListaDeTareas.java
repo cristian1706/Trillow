@@ -1,6 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,23 +9,35 @@ import javax.persistence.*;
 
 public class ListaDeTareas {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_listaDeTareas")
 	
-	private Integer id;
+	private Long id;
 	private String titulo;
-	private ArrayList<Tarea> tareas;
+	
+	@OneToMany(mappedBy="listaDeTareas")
+	private Collection<Tarea> tareas;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="id_proyecto")
+	private Proyecto proyecto;
 
+	
+	public ListaDeTareas() {
+		
+	}
+	
+	
 	public ListaDeTareas(String titulo) {
 		super();
 		this.titulo = titulo;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -36,11 +49,11 @@ public class ListaDeTareas {
 		this.titulo = titulo;
 	}
 	
-	public ArrayList<Tarea> getTareas() {
+	public Collection<Tarea> getTareas() {
 		return tareas;
 	}
 
-	public void setTareas(ArrayList<Tarea> tareas) {
+	public void setTareas(Collection<Tarea> tareas) {
 		this.tareas = tareas;
 	}
 }

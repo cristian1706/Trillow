@@ -7,34 +7,42 @@ import javax.persistence.*;
 
 public class Comentario {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_comentario")
+	private Long id;
 	
-	private Integer id;
 	private String texto;
-	private Integer id_usuario;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
+	
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="id_tarea")
+	private Tarea tarea;
 	
 	public Comentario() {
 	}
 
-	public Comentario(String texto, Integer id_usuario) {
+	public Comentario(String texto, Usuario usuario) {
 		this.setTexto(texto);
-		this.setId_usuario(id_usuario);
+		this.setUsuario(usuario);
 	}
 
-	public Integer getId_usuario() {
-		return id_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(Integer id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -45,6 +53,5 @@ public class Comentario {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
 
 }

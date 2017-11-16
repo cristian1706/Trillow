@@ -1,6 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,16 +9,28 @@ import javax.persistence.*;
 
 public class Usuario {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_usuario")
-
-	private Integer id;
+	private Long id;
+	
 	private String nombre;
 	private String apellido;
 	private String username;
 	private String email;
 	private String clave;
-	private ArrayList<Integer> proyectos;
+	
+	@ManyToMany
+	@JoinTable(name="usuario_proyecto", joinColumns=@JoinColumn(name="id_usuario", referencedColumnName="id_usuario"), inverseJoinColumns=@JoinColumn(name="id_proyecto", referencedColumnName="id_proyecto"))
+	private Collection<Proyecto> proyectos;
+	
+	
+	@OneToMany(mappedBy="usuario")
+	private Collection<Comentario> comentarios;
+	
+	@ManyToMany
+	@JoinTable(name="usuario_tarea", joinColumns=@JoinColumn(name="id_usuario", referencedColumnName="id_usuario"), inverseJoinColumns=@JoinColumn(name="id_tarea", referencedColumnName="id_tarea"))
+	private Collection<Tarea> tareas;
+	
 	
 	public Usuario() {
 		
@@ -31,10 +44,10 @@ public class Usuario {
 		this.setClave(clave);
 	}
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -67,11 +80,11 @@ public class Usuario {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	public ArrayList<Integer> getProyectos() {
+	public Collection<Proyecto> getProyectos() {
 		return proyectos;
 	}
 
-	public void setProyectos(ArrayList<Integer> proyectos) {
+	public void setProyectos(Collection<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
 }

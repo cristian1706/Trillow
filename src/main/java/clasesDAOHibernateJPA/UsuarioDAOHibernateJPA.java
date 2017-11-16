@@ -1,9 +1,5 @@
 package clasesDAOHibernateJPA;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
 import clasesDAO.UsuarioDAO;
 import model.Usuario;
 
@@ -11,14 +7,7 @@ public class UsuarioDAOHibernateJPA extends GenericDAOHibernateJPA<Usuario> impl
 	
 	public UsuarioDAOHibernateJPA() {
 		super(Usuario.class);
-	}
-
-	@Override
-	public Usuario recuperarUsuario(Integer usuario) {
-		Query consulta = EMF.getEMF().createEntityManager().createQuery("select u from Usuario u where u.username =?");
-		consulta.setParameter(1, usuario);
-		Usuario resultado = (Usuario)consulta.getSingleResult();
-		return resultado;
+		// TODO Auto-generated constructor stub
 	}
 	
 	

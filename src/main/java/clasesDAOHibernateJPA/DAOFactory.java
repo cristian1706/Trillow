@@ -1,8 +1,5 @@
 package clasesDAOHibernateJPA;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import clasesDAO.ProyectoDAO;
 import clasesDAO.TareaDAO;
 import clasesDAO.UsuarioDAO;

@@ -1,42 +1,56 @@
 package model;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
-import model.Usuario;
 
 @Entity
 @Table(name="tarea")
 
 public class Tarea {
-	@Id @GeneratedValue
-	@Column(name="tarea_id")
-
-	private Integer id;
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id_tarea")
+	private Long id;
+	
 	private String titulo;
 	private String descripcion;
 	private Date fechaDeAsignacion;
 	private Date fechaDeVencimiento;
-	private ArrayList<Integer> comentarios;
-	private ArrayList<Integer> checklist;
-	private ArrayList<Integer> participantes;
-	private Integer idListaDeTareas;
 	
-	public Tarea (String titulo, String descripcion, Date fechaDeAsignacion, Date fechaDeVencimiento, ArrayList<Integer> participantes, Integer idListaDeTareas) {
+	@OneToMany(mappedBy="tarea")
+	private Collection<Comentario> comentarios;
+	
+	@OneToMany(mappedBy="tarea")
+	private Collection<CheckItem> checklist;
+	
+	@ManyToMany(mappedBy="tareas")
+	private Collection<Usuario> participantes;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="id_listaDeTareas")
+	private ListaDeTareas listaDeTareas;
+		
+	public Tarea() {
+		
+	}
+	
+	
+	public Tarea (String titulo, String descripcion, Date fechaDeAsignacion, Date fechaDeVencimiento, Collection<Usuario> participantes, ListaDeTareas listaDeTareas) {
 		this.setTitulo(titulo);
 		this.setDescripcion(descripcion);
 		this.setFechaDeAsignacion(fechaDeAsignacion);
 		this.setFechaDeVencimiento(fechaDeVencimiento);
 		this.setParticipantes(participantes);
-		this.setIdListaDeTareas(idListaDeTareas);
+		this.setListaDeTareas(listaDeTareas);
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -72,36 +86,36 @@ public class Tarea {
 		this.fechaDeVencimiento = fechaDeVencimiento;
 	}
 	
-	public ArrayList<Integer> getComentarios() {
+	public Collection<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(ArrayList<Integer> comentarios) {
+	public void setComentarios(Collection<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
 
-	public ArrayList<Integer> getChecklist() {
+	public Collection<CheckItem> getChecklist() {
 		return checklist;
 	}
 
-	public void setChecklist(ArrayList<Integer> checklist) {
+	public void setChecklist(Collection<CheckItem> checklist) {
 		this.checklist = checklist;
 	}
 
-	public ArrayList<Integer> getParticipantes() {
+	public Collection<Usuario> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(ArrayList<Integer> participantes) {
+	public void setParticipantes(Collection<Usuario> participantes) {
 		this.participantes = participantes;
 	}
 
-	public Integer getIdListaDeTareas() {
-		return idListaDeTareas;
+	public ListaDeTareas getListaDeTareas() {
+		return listaDeTareas;
 	}
 
-	public void setIdListaDeTareas(Integer idListaDeTareas) {
-		this.idListaDeTareas = idListaDeTareas;
+	public void setListaDeTareas(ListaDeTareas listaDeTareas) {
+		this.listaDeTareas = listaDeTareas;
 	}
 	
 	

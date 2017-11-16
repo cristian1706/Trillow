@@ -7,21 +7,30 @@ import javax.persistence.*;
 
 public class CheckItem {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_checkItem")
+	private Long id;
 	
-	private Integer id;
 	private String texto;
 	private Boolean estado;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="id_tarea")
+	private Tarea tarea;
+	
+	public CheckItem() {
+		
+	}
+	
 	
 	public CheckItem(String texto, Boolean estado) {
 		this.setTexto(texto);
 		this.setEstado(estado);
 	}
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTexto() {
