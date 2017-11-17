@@ -6,7 +6,7 @@ import clasesDAOHibernateJPA.DAOFactory;
 import model.Proyecto;
 import model.Usuario;
 
-public class testProyectoNew {
+public class TestProyectoNew {
 
 	public static void main(String[] args) {
 		
@@ -19,6 +19,7 @@ public class testProyectoNew {
 		String fin = "2017-12-10";
 		String des = "Descripcion";
 		Proyecto proy = new Proyecto("Proyecto 1",hoy,fin);
+		proy.setCreador(u);
 		proy.setDescripcion(des);
 		proy = proj.persistir(proy);
 		

@@ -11,14 +11,26 @@ import javax.persistence.*;
 public class Proyecto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_proyecto")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_proyecto")
 	private Long id;
 
 	private String titulo;
 	private String descripcion;
 	private String fechaDeCreacion;
 	private String fechaDeFinalizacion;
+	
+	@ManyToOne
+	@JoinColumn(name="id_creador")
+	private Usuario creador;
+
+	public Usuario getCreador() {
+		return creador;
+	}
+
+	public void setCreador(Usuario creador) {
+		this.creador = creador;
+	}
 
 	@ManyToMany(mappedBy="proyectos")
 	private Collection<Usuario> miembros;

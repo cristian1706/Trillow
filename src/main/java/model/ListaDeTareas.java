@@ -9,9 +9,8 @@ import javax.persistence.*;
 
 public class ListaDeTareas {
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_listaDeTareas")
-	
 	private Long id;
 	private String titulo;
 	
