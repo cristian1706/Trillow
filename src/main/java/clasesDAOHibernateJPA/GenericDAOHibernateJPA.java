@@ -2,16 +2,19 @@ package clasesDAOHibernateJPA;
 
 import java.util.List;
 
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import clasesDAO.GenericDAO;
 
+@Transactional
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	protected Class<T> persistentClass;
+	private EntityManager entityManager;
 
 	public GenericDAOHibernateJPA(Class<T> class1) {
 		this.persistentClass = class1;
@@ -25,44 +28,30 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		this.persistentClass = persistentClass;
 	}
 
+	@PersistenceContext
+	public void setEntityManager(EntityManager em) {
+		this.entityManager = em;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
 	@Override
 	public T actualizar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		entity = em.merge(entity);
-		etx.commit();
-		em.close();
+		entity = this.getEntityManager().merge(entity);
 		return entity;
-
 	}
 
 	@Override
 	public void borrar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.contains(entity) ? entity : em.merge(entity));
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			throw e; // escribir en un log o mostrar un mensaje
-		} finally {
-			em.close();
-		}
-
+		this.getEntityManager().remove(entity);
 	}
 
 	@Override
 	public T borrar(Long id) {
-		T entity = EMF.getEMF().createEntityManager().find(this.getPersistentClass(), id);
-		
-		if (entity != null) {
-			this.borrar(entity);
-		}
+		T entity = this.getEntityManager().find(this.getPersistentClass(), id);
+		this.borrar(entity);
 		return entity;
 	}
 
@@ -74,35 +63,22 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T persistir(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(entity);
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			throw e; // escribir en un log o mostrar un mensaje
-		} finally {
-			em.close();
-		}
+		this.getEntityManager().persist(entity);
 		return entity;
 
 	}
 
 	@Override
 	public T recuperar(Long id) {
-		T entity = EMF.getEMF().createEntityManager().find(this.getPersistentClass(), id);
+		T entity = this.getEntityManager().find(this.getPersistentClass(), id);
 		return entity;
 	}
-	
-	public List<?> recuperarTodos(String columnOrder) {
-		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " + getPersistentClass().getSimpleName()+" e order by e."+columnOrder);
-		List<?> resultado = (List<?>)consulta.getResultList();
-		return resultado;
-		}
 
+	public List<?> recuperarTodos(String columnOrder) {
+		Query consulta = EMF.getEMF().createEntityManager()
+				.createQuery("select e from " + getPersistentClass().getSimpleName() + " e order by e." + columnOrder);
+		List<?> resultado = (List<?>) consulta.getResultList();
+		return resultado;
+	}
 
 }

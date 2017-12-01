@@ -1,8 +1,11 @@
 package clasesDAOHibernateJPA;
 
+import org.springframework.stereotype.Repository;
+
 import clasesDAO.UsuarioDAO;
 import model.Usuario;
 
+@Repository
 public class UsuarioDAOHibernateJPA extends GenericDAOHibernateJPA<Usuario> implements UsuarioDAO{
 	
 	public UsuarioDAOHibernateJPA() {
