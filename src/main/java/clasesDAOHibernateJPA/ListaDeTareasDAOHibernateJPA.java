@@ -12,11 +12,4 @@ public class ListaDeTareasDAOHibernateJPA extends GenericDAOHibernateJPA<ListaDe
 		super(ListaDeTareas.class);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public ListaDeTareas recuperarListaDeTareas(String ListaDeTareas) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -4,12 +4,8 @@ import model.Usuario;
 
 public interface UsuarioDAO extends GenericDAO<Usuario> {
 	
-	public Usuario persistir(Usuario user);
-	
-	public Usuario actualizar(Usuario user);
-		
-	public Usuario borrar(Long id);
-	
-	public Usuario recuperar(Long id);
+	public Usuario chequearAutenticacion(String usuario, String clave);
+
+	public boolean existe(String email);
 
 }

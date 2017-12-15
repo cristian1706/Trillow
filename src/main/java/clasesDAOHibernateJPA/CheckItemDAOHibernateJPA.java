@@ -13,10 +13,4 @@ public class CheckItemDAOHibernateJPA extends GenericDAOHibernateJPA<CheckItem> 
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public CheckItem recuperarCheckItem(String CheckItem) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

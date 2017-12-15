@@ -1,5 +1,6 @@
 package clasesDAOHibernateJPA;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,73 +13,72 @@ import clasesDAO.GenericDAO;
 
 @Transactional
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
-
-	protected Class<T> persistentClass;
+	
+	protected Class<T> persistent;
+	
 	private EntityManager entityManager;
 
-	public GenericDAOHibernateJPA(Class<T> class1) {
-		this.persistentClass = class1;
-	}
-
-	public Class<T> getPersistentClass() {
-		return persistentClass;
-	}
-
-	public void setPersistentClass(Class<T> persistentClass) {
-		this.persistentClass = persistentClass;
-	}
-
+	
 	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
+	public void setEntityManager(EntityManager em){
 		this.entityManager = em;
 	}
-
+	
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
-	@Override
-	public T actualizar(T entity) {
-		entity = this.getEntityManager().merge(entity);
-		return entity;
+	
+	public GenericDAOHibernateJPA(Class<T> persistent) {
+		this.persistent = persistent;
 	}
-
-	@Override
-	public void borrar(T entity) {
-		this.getEntityManager().remove(entity);
-	}
-
-	@Override
-	public T borrar(Long id) {
-		T entity = this.getEntityManager().find(this.getPersistentClass(), id);
-		this.borrar(entity);
-		return entity;
-	}
-
-	@Override
-	public boolean existe(Long id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
+	
+	
 	public T persistir(T entity) {
 		this.getEntityManager().persist(entity);
 		return entity;
-
 	}
-
-	@Override
+	
+	public T modificar(T entity) {
+		T entity2 = this.getEntityManager().merge(entity);
+		return entity2;
+	}
+	
+	public T eliminar(T entity) {
+			this.getEntityManager().remove(entity);
+			return entity;
+	}
+	
+	public List<T> recuperarTodos() {
+	//	Query consulta=EMFactory.getEMF().createEntityManager().find(this.getPersistent()); 
+		
+		Query consulta = this.getEntityManager().createQuery("select e from " + getPersistent().getSimpleName()+ " e");
+		@SuppressWarnings("unchecked")
+		List<T> resultado = (List<T>) consulta.getResultList();
+		if (resultado.size() != 0) {
+			return resultado;
+		} else {
+			return null;
+		}
+	}
+	
+	public T eliminar(Serializable id) {
+		T entity = this.getEntityManager().find(this.getPersistent(), id);
+		this.eliminar(entity);
+		return entity;
+	}
+	
 	public T recuperar(Long id) {
-		T entity = this.getEntityManager().find(this.getPersistentClass(), id);
+		T entity = this.getEntityManager().find(this.getPersistent(), id);
 		return entity;
 	}
 
-	public List<?> recuperarTodos(String columnOrder) {
-		Query consulta = EMF.getEMF().createEntityManager()
-				.createQuery("select e from " + getPersistentClass().getSimpleName() + " e order by e." + columnOrder);
-		List<?> resultado = (List<?>) consulta.getResultList();
-		return resultado;
+	
+	public Class<T> getPersistent() {
+		return persistent;
+	}
+
+	public void setPersistent(Class<T> persistent) {
+		this.persistent = persistent;
 	}
 
 }

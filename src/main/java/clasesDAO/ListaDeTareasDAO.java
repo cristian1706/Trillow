@@ -4,6 +4,6 @@ import model.ListaDeTareas;
 
 public interface ListaDeTareasDAO extends GenericDAO<ListaDeTareas> {
 	
-	public ListaDeTareas recuperarListaDeTareas(String ListaDeTareas);
+//	public ListaDeTareas recuperarListaDeTareas(String ListaDeTareas);
 
 }
