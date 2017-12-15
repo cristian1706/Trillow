@@ -3,7 +3,6 @@ package tests;
 
 import clasesDAO.UsuarioDAO;
 import clasesDAOHibernateJPA.DAOFactory;
-import clasesDAOHibernateJPA.UsuarioDAOHibernateJPA;
 import model.Usuario;
 
 
